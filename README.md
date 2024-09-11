@@ -39,19 +39,29 @@ initial_probabilities = np.array([0.5,0.5])
 #Define the observed sequence
 ```
 observed_sequence = np.array([1,1,1,0,0,1])
+```
 # Initialize the alpha matrix
+```
 alpha = np. zeros ((len(observed_sequence) ,len (initial_probabilities) ) )
+```
 # Calculate the first row of the alpha matrix
+```
 alpha [0,:] = initial_probabilities *emission_matrix[:, observed_sequence [0]]
+```
 # Loop through the rest of the observed sequence and calculate the rest of the alpha matrix
+```
 for t in range (1, len (observed_sequence) ) :
   for j in range (len (initial_probabilities) ) :
     alpha[t,j]= emission_matrix [j,observed_sequence[t]] *np.sum(alpha[t-1:]*transition_matrix[:, j])
     # Calculate the probability of the observed sequence
 probability = np.sum(alpha[-1,:])
+```
 # Print the probability of the observed sequence
+```
 print ("The probability of the observed sequence is: " ,probability)
+```
 # Find the most likely sequence of weather states given the observed sequence
+```
 most_likely_sequence=[]
 for t in range (len (observed_sequence)):
   if alpha [t, 0] > alpha [t,1]:
@@ -61,7 +71,10 @@ for t in range (len (observed_sequence)):
 print("The most likely sequence of Weather States is",most_likely_sequence)
 ```
 ## Output:
-Show your results here
+
+![Screenshot 2024-09-11 143514](https://github.com/user-attachments/assets/9e971465-19eb-4c54-9358-ccf0d13223e2)
+
+![Screenshot 2024-09-11 143526](https://github.com/user-attachments/assets/6cdd82ae-c903-41ef-b78a-e02fb5e0348e)
 
 ## Result:
 Thus Hidden Markov Model is implemented using python.
